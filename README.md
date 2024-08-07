@@ -31,16 +31,16 @@ scale_multi: number - Multiplies the scale of how much should it be, similar to 
 
 options - options, basically options for the specified input type, each input type has its own settings that works in certain cases, refer to "ARGUMENT LIST" to see available options for each
 
-__METHODS
+## __METHODS
 `input_src:relocate_input(runtime_name: string, pos: UDim2)`
-
+__________
 Moves your input UI position with specified UDim2 scale or offset
 
 runtime_name: string - Existing input created from `create_inputs` API, This field is Case Sensitive
 
 pos: UDim2 - Position of where it should go to
 
-__EVENTS
-`input_src.inputbegin(function(
+## __EVENTS
+`input_src.inputbegin
 
 
