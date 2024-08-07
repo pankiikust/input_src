@@ -18,7 +18,9 @@ Once obtained, place the module in anywhere that client can access, if it's insi
 
 # ![API]!
 
-`input_src.create_inputs(runtime_name: string, input_type: string, pos: Udim2, scale_multi: number, options)`
+```luau
+input_src.create_inputs(runtime_name: string, input_type: string, pos: Udim2, scale_multi: number, options)
+```
 
 ### Creates the input with runtime name and input type
 runtime_name: string - the name of input you should call, This is similar to BindAction's first arg
@@ -48,7 +50,10 @@ input_src:scale(scale_num: number)
 Rescales the input UI, There is no UDim2 and this is only made for the Joystick input
 
 scale_num: number - The number of the scale, identical to UIScale
+----------
 
+```luau
+input_src:
 ## __EVENTS
 ```luau 
 input_src.joystick_inputbegin:Connect(function()
