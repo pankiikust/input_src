@@ -41,6 +41,8 @@ runtime_name: string - Existing input created from `create_inputs` API, This fie
 pos: UDim2 - Position of where it should go to
 
 ## __EVENTS
-`input_src.inputbegin
+```luau 
+input_src.inputbegin:Connect(function()
+```
 
 
