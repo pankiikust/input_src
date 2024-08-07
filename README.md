@@ -32,17 +32,36 @@ scale_multi: number - Multiplies the scale of how much should it be, similar to 
 options - options, basically options for the specified input type, each input type has its own settings that works in certain cases, refer to "ARGUMENT LIST" to see available options for each
 
 ## __METHODS
-`input_src:relocate_input(runtime_name: string, pos: UDim2)`
-__________
+```luau
+input_src:relocate_input(runtime_name: string, pos: UDim2)
+```
 Moves your input UI position with specified UDim2 scale or offset
 
 runtime_name: string - Existing input created from `create_inputs` API, This field is Case Sensitive
 
 pos: UDim2 - Position of where it should go to
+__________
+
+```luau
+input_src:scale(scale_num: number)
+```
+Rescales the input UI, There is no UDim2 and this is only made for the Joystick input
+
+scale_num: number - The number of the scale, identical to UIScale
 
 ## __EVENTS
 ```luau 
-input_src.inputbegin:Connect(function()
+input_src.joystick_inputbegin:Connect(function()
 ```
+Connects the joystick input event that fires only one time after they began to press
 
+<There is no required arguments for this>
+__________
 
+```luau
+input_src.deadzone_exited:Connect(function()
+```
+Connects the event when input pos has exited the dead zone, This fires only one each time they're outside (FIXED_ will not fire it since they remain in one position)
+
+<There is no required arguments for this>
+__________
