@@ -55,7 +55,7 @@ input_src.joystick_inputbegin:Connect(function()
 ```
 Connects the joystick input event that fires only one time after they began to press
 
-<There is no required arguments for this>
+{There is no required arguments for this}
 
 __________
 
@@ -64,6 +64,6 @@ input_src.deadzone_exited:Connect(function()
 ```
 Connects the event when input pos has exited the dead zone, This fires only one each time they're outside (FIXED_ will not fire it since they remain in one position)
 
-<There is no required arguments for this>
+{There is no required arguments for this}
 
 __________
