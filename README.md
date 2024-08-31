@@ -53,24 +53,40 @@ scale_num: number - The number of the scale, identical to UIScale
 
 ----------
 
+```luau
+input_src:edit_appearance(properties)
+```
+Edits it's appearance of the input such as images of the button, This doesn't contain scale and position because it is separated as a method
+
+properties: a set of properties that are available for each inputs, note that these are not related to the actual ui elements properties roblox has been giving
+
+_________
+
 ## __EVENTS
 
 ```luau 
-input_src.joystick_inputbegin:Connect(function()
+input_src.joystick_inputbegin:Connect(function(magnitude, direction)
 ```
 Connects the joystick input event that fires only one time after they began to press, This is a custom event and is identical to UIS InputBegan but without input object required
 
-Returns: additional data such as magnitude of moved pos and direction
+parameters: magnitude refers to how far your pos between the center and the tap pos is, 
 
-{There is no required arguments for this}
+{There is no required arguments for this, these are optional}
 
 __________
 
 ```luau
 input_src.deadzone_exited:Connect(function()
 ```
-Connects the event when input pos has exited the dead zone, This fires only one each time they're outside (FIXED_ and DYNAMIC_ will not fire it since they remain in one position)
+Connects the event when input pos has exited the dead zone for JOYSTICK_, This fires only one each time they're outside (FIXED_ and DYNAMIC_ will not fire it since they remain in one position)
 
 {There is no required arguments for this}
 
 __________
+
+```luau
+input_src.normal_inputbegin:Connect(function()
+```
+Connects the Input that fires when it began to press, This is only available to FIXED_ and DYNAMIC_ as they both don't have a limited zone
+
+
