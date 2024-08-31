@@ -50,15 +50,17 @@ input_src:scale(scale_num: number)
 Rescales the input UI, There is no UDim2 and this is only made for the Joystick input
 
 scale_num: number - The number of the scale, identical to UIScale
+
 ----------
 
-```luau
-input_src:
 ## __EVENTS
+
 ```luau 
 input_src.joystick_inputbegin:Connect(function()
 ```
-Connects the joystick input event that fires only one time after they began to press
+Connects the joystick input event that fires only one time after they began to press, This is a custom event and is identical to UIS InputBegan but without input object required
+
+Returns: additional data such as magnitude of moved pos and direction
 
 {There is no required arguments for this}
 
@@ -67,7 +69,7 @@ __________
 ```luau
 input_src.deadzone_exited:Connect(function()
 ```
-Connects the event when input pos has exited the dead zone, This fires only one each time they're outside (FIXED_ will not fire it since they remain in one position)
+Connects the event when input pos has exited the dead zone, This fires only one each time they're outside (FIXED_ and DYNAMIC_ will not fire it since they remain in one position)
 
 {There is no required arguments for this}
 
