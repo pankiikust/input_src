@@ -87,6 +87,24 @@ __________
 ```luau
 input_src.normal_inputbegin:Connect(function()
 ```
-Connects the Input that fires when it began to press, This is only available to FIXED_ and DYNAMIC_ as they both don't have a limited zone
+Connects the Input that fires when it began to press, This is only available to FIXED_ and DYNAMIC_ as they both don't have a limited and dead zone, for JOYSTICK_ inputbegin, refer to joystick_inputbegin
 
+{There is no required arguments for this}
+
+__________
+
+```luau
+input_src.joystick_inputstopped:Connect(function()
+```
+
+Connects the InputStopped after touch released, identical to regular UIS InputEnded but automatically reset to where it was before.
+
+{There is no required arguments for this}
+
+_______________
+
+# CREDITS
+## stravant - Signal module
+## ReelPlum - border limiter (from the Plum's Minimap)
+## HowManySmall - janitor to clean up
 
