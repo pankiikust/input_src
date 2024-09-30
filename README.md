@@ -37,23 +37,13 @@ Moves your input UI position with specified UDim2 scale or offset
 runtime_name: string - Existing input created from `create_inputs` API, This field is Case Sensitive
 
 pos: UDim2 - Position of where it should go to
-__________
-
-```luau
-input_src:scale(scale_num: number)
-```
-Rescales the input UI, There is no UDim2 and this is only made for the Joystick input
-
-scale_num: number - The number of the scale, identical to UIScale
 
 ----------
 
 ```luau
-input_src:edit_appearance(properties)
+input_src:update_preference()
 ```
-Edits it's appearance of the input such as images of the button, This doesn't contain scale and position because it is separated as a method
-
-properties: a set of properties that are available for each inputs, note that these are not related to the actual ui elements properties roblox has been giving
+Updates the preference after changed from the available settings, call this each time you've changed to update what has been made
 
 _________
 
