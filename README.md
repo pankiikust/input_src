@@ -1,18 +1,13 @@
 # input_src
 a mobile controls made alternative to CAS
 
-input_src is another ContextActionService that focuses on fixing it's horrible controls roblox offers to ContextActionService when turning mobile buttons parameters on, with additional features to run rather than being an inputless service based, input_src's mission is to balance the playability such as turning around while holding buttons.
-
-## No ContextActionService
-Get it outta here,,,,,, throw your nasty little service out before everyone gets pissed!!!!! you can't even try to fix it but with input_src, replace that with this and the feel is similar to it, expanding more customizability for your buttons without any struggle of changing everything for your inputs.
+input_src is a mobile controls input tool that focuses on fixing it's horrible controls roblox offers to ContextActionService when turning mobile buttons parameters on, input_src's goal is to offer a pretty much quicker and better controls that none other than input_src can do, making it rich-like for compatibility without having the need to test by your phone, additionally it also offers a way to customize your appearance which can be done directly and call the update method.
 
 # DISCLAIMER 
-Because the code written is entirely snake_case, if you wish to swap it to stylize within the standards, you are allowed to take this and modify it in your ways, as mentioned earlier in some of my devforum posts, I don't really like following the guides as it gets pretty confusing for me when I can't tell the differences between actual API from roblox and Custom ones
-
-and because of how my code is structured, some of my way coding it is not efficient, friendly, painful or horrible in performances, you can submit your forks of this as long as you modify it and release with changes pointed out
+Because the code written is entirely snake_case, if you wish to stylize within the standards, you are allowed to take this and modify it in your ways, as mentioned earlier in some of my devforum posts, I don't really like following the guides as it gets pretty confusing for me when I can't tell the differences between actual API from roblox and Custom ones, and lastly you should be aware that while this is intentionally an open source tool, codes can come in a messy structure or in some line where it's unnecessary or straight out impractical here
 
 # INSTALLATION 
-To install input_src for your game, get it from the marketplace or the GitHub page on the release sections, note that there is no Wally support or Rojo as this was written built-in the studio directly, I'm not familiar with those yet and it's only my first step-in module.
+To install input_src for your game, get it from the marketplace or the GitHub page on the release sections, note that there is no Wally support or Rojo as this was written built-in the studio directly, I'm not familiar with those and it's only my first tool released for the first time.
 
 Once obtained, place the module in anywhere that client can access, if it's inside a server, you won't be able to find it with LocalScript
 
