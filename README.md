@@ -43,8 +43,15 @@ pos: UDim2 - Position of where it should go to
 ```luau
 input_src:update_preference()
 ```
-Updates the preference after changed from the available settings, call this each time you've changed to update what has been made
+Updates the preference after changed from the available settings, it only applies how the controls look
+because the stored setting is in a table of your created input without applying, you won't see the changes immediately
 
+```luau
+input_src:update_value_settings()
+```
+Updates the additional values used for triggering custom behavior in certain situations, it is similar to `update_preference()`
+except the use case is different, because the stored setting is in a table of your created input without applying, you won't see the changes immediately
+call this each time you've changed the values from [input type]_value_set
 _________
 
 ## __EVENTS
@@ -61,11 +68,11 @@ parameters: magnitude refers to how far your pos between the center and the tap 
 __________
 
 ```luau
-input_src.deadzone_exited:Connect(function()
+input_src.joystick_deadzone_triggered:Connect(function(exited)
 ```
-Connects the event when input pos has exited the dead zone for JOYSTICK_, This fires only one each time they're outside (FIXED_ and DYNAMIC_ will not fire it since they remain in one position)
+Connects the event when input pos has exited the dead zone for `joystick`, This fires only one each time they're outside (`fixed` and `dynamic` will not fire it since they don't have limitations in traversing)
 
-{There is no required arguments for this}
+{exited = whenever the dot reached the edge of the zone, returns true or false}
 
 __________
 
@@ -74,22 +81,22 @@ input_src.normal_inputbegin:Connect(function()
 ```
 Connects the Input that fires when it began to press, This is only available to FIXED_ and DYNAMIC_ as they both don't have a limited and dead zone, for JOYSTICK_ inputbegin, refer to joystick_inputbegin
 
-{There is no required arguments for this}
+{There is no returned arguments for this}
 
 __________
 
 ```luau
-input_src.joystick_inputstopped:Connect(function()
+input_src.joystick_inputend:Connect(function()
 ```
 
-Connects the InputStopped after touch released, identical to regular UIS InputEnded but automatically reset to where it was before.
+Connects the InputEnd after touch released, identical to regular UIS InputEnded but automatically reset to where it was before.
 
-{There is no required arguments for this}
+{There is no returned arguments for this}
 
 _______________
 
 # CREDITS
-## stravant - Signal module
-## ReelPlum - border limiter (from the Plum's Minimap)
-## HowManySmall - janitor to clean up
+stravant - Signal module
+ReelPlum - border limiter (from the Plum's Minimap)
+HowManySmall - janitor to clean up
 
