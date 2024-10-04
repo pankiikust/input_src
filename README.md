@@ -46,14 +46,18 @@ input_src:update_preference()
 Updates the preference after changed from the available settings, it only applies how the controls look
 because the stored setting is in a table of your created input without applying, you won't see the changes immediately
 
+----------
 ```luau
 input_src:update_value_settings()
 ```
 Updates the additional values used for triggering custom behavior in certain situations, it is similar to `update_preference()`
 except the use case is different, because the stored setting is in a table of your created input without applying, you won't see the changes immediately
 call this each time you've changed the values from [input type]_value_set
-_________
-
+----------
+```luau
+input_src:kill_input()
+```
+Destroys the input after no longer used
 ## __EVENTS
 
 ```luau 
