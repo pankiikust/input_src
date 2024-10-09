@@ -46,26 +46,27 @@ input_src:update_preference()
 Updates the preference after changed from the available settings, it only applies how the controls look
 because the stored setting is in a table of your created input without applying, you won't see the changes immediately
 
-----------
+__________
+
 ```luau
-input_src:update_value_settings()
+input_src:toggle_visibility(bool)
 ```
-Updates the additional values used for triggering custom behavior in certain situations, it is similar to `update_preference()`
-except the use case is different, because the stored setting is in a table of your created input without applying, you won't see the changes immediately
-call this each time you've changed the values from [input type]_value_set
+
+Toggles whenever you want the input to show or be hidden, instead of trying to destroy and recreate, you can use this instead to hide if the inputs are not supposed to be shown, if you feel like the input is no longer usable or you want to destroy it, call `kill_input()` to get a rid of it
+
 ----------
 ```luau
 input_src:kill_input()
 ```
-Destroys the input after no longer used
+Destroys the input after no longer used, you will no longer be able to access it after this has been called
+
+__________
 ## __EVENTS
 
 ```luau 
-input_src.joystick_inputbegin:Connect(function(magnitude, direction)
+input_src.joystick_inputbegin:Connect(function()
 ```
 Connects the joystick input event that fires only one time after they began to press, This is a custom event and is identical to UIS InputBegan but without input object required
-
-parameters: magnitude refers to how far your pos between the center and the tap pos is, 
 
 {There is no required arguments for this, these are optional}
 
@@ -83,7 +84,7 @@ __________
 ```luau
 input_src.normal_inputbegin:Connect(function()
 ```
-Connects the Input that fires when it began to press, This is only available to FIXED_ and DYNAMIC_ as they both don't have a limited and dead zone, for JOYSTICK_ inputbegin, refer to joystick_inputbegin
+Connects the Input that fires when it began to press, This is only available to `fixed` and `dynamic` as they both don't have a limited and dead zone, for JOYSTICK_ inputbegin, refer to joystick_inputbegin
 
 {There is no returned arguments for this}
 
