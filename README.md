@@ -40,7 +40,7 @@ Moves your input UI position with specified UDim2 scale or offset, moving inputs
 
 pos: UDim2 - Position of where it should go to
 
-> [!CRITICAL]
+> [!CAUTION]
 > This API is not implemented yet
 
 ----------
