@@ -1,7 +1,7 @@
 # input_src
-a mobile controls made alternative to CAS
+a mobile controls made for mobile compatibility games 
 
-input_src is a mobile controls input tool that focuses on fixing it's horrible controls roblox offers to ContextActionService when turning mobile buttons parameters on, input_src's goal is to offer a pretty much quicker and better controls that none other than input_src can do, making it rich-like for compatibility without having the need to test by your phone, additionally it also offers a way to customize your appearance which can be done directly and call the update method.
+input_src is a mobile controls input tool that focuses on fixing it's horrible controls roblox offers to ContextActionService when turning mobile buttons parameters on and several naïve solutions, input_src's goal is to offer a pretty much quicker and better controls that none other than input_src can do, making it rich-like for compatibility without having the need to test by your phone, additionally it also offers a way to customize your appearance which can be done directly and call the update method.
 
 # DISCLAIMER 
 Because the code written is entirely snake_case, if you wish to stylize within the standards, you are allowed to take this and modify it in your ways, as mentioned earlier in some of my devforum posts, I don't really like following the guides as it gets pretty confusing for me when I can't tell the differences between actual API from roblox and Custom ones, and lastly you should be aware that while this is intentionally an open source tool, codes can come in a messy structure or in some line where it's unnecessary or straight out impractical here
@@ -14,51 +14,50 @@ Once obtained, place the module in anywhere that client can access, if it's insi
 # ![API]!
 
 ```luau
-input_src.create_inputs(runtime_name: string, input_type: string, pos: Udim2, scale_multi: number, options)
+input_src.[input_type].create(...)
 ```
 
-### Creates the input with runtime name and input type
-runtime_name: string - the name of input you should call, This is similar to BindAction's first arg
+### Creates the input by using container along with zone provided, it is based on the type you are getting
 
-input_type: string - (JOYSTICK_ , DYNAMIC_ and FIXED_) joy stick is self explanatory, Dynamic moves your button positioned at your tap and fixed remains in one position without moving anywhere
+You can only use 3 types of controls the module offers, The following has
 
-pos: Udim2 - Specifies where your position should be at, can use both Scale and Offset
+Joystick - Creates a circular input, Joystick or commonly referred as Thumbstick is based on Joystick, it contains deadzone which triggers after out of zone and inside
 
-scale_multi: number - Multiplies the scale of how much should it be, similar to the UIScale and scaling uses offset (scale will squeeze it)
+Dynamic - Creates a fixed button, instead of staying in one position, Dynamic follows your tap position no matter where it goes
 
-options - options, basically options for the specified input type, each input type has its own settings that works in certain cases, refer to "ARGUMENT LIST" to see available options for each
+Fixed - Creates a fixed button, a plain UI that stays in one position, There is no rendering involved and it's the simplest function ever made.
 
-## __METHODS
+## __METHODS (obj refers to a created input)
 ```luau
-input_src:relocate_input(runtime_name: string, pos: UDim2)
+obj:relocate_input(pos: UDim2)
 ```
-Moves your input UI position with specified UDim2 scale or offset
-
-runtime_name: string - Existing input created from `create_inputs` API, This field is Case Sensitive
+Moves your input UI position with specified UDim2 scale or offset, moving inputs can be useful if you are implementing a keybind editor
 
 pos: UDim2 - Position of where it should go to
 
 ----------
 
 ```luau
-input_src:update_preference()
+obj:update_preference()
 ```
 Updates the preference after changed from the available settings, it only applies how the controls look
-because the stored setting is in a table of your created input without applying, you won't see the changes immediately
+because the stored setting is in a table of your created input without applying, you won't see the changes immediately so it is always required to call this
 
 __________
 
 ```luau
-input_src:toggle_visibility(bool)
+obj:toggle_visibility(bool)
 ```
 
-Toggles whenever you want the input to show or be hidden, instead of trying to destroy and recreate, you can use this instead to hide if the inputs are not supposed to be shown, if you feel like the input is no longer usable or you want to destroy it, call `kill_input()` to get a rid of it
+Toggles whenever you want the input to show or be hidden, instead of trying to destroy and recreate, you can use this instead to hide if the inputs are not supposed to be shown, if you feel like the input is no longer usable or you want to destroy it, call `delete()` to get a rid of it
 
 ----------
 ```luau
-input_src:kill_input()
+obj:delete()
 ```
-Destroys the input after no longer used, you will no longer be able to access it after this has been called
+Destroys the input after no longer used, you will no longer be able to access it after this has been called, By default when you destroy the input manually either from the `ResetOnSpawn` or somewhere else, it can do the job but sometimes they're not properly cleaned since there could be a task running it aswell
+
+it is recommended that you stop functions from running before calling this, otherwise memory leaks can occur especially if called at the time threads are still yielding
 
 __________
 ## __EVENTS
