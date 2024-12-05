@@ -29,6 +29,9 @@ Dynamic - Creates a fixed button, instead of staying in one position, Dynamic fo
 
 Fixed - Creates a fixed button, a plain UI that stays in one position, There is no rendering involved and it's the simplest function ever made.
 
+> [!NOTE]
+> The 3 dots placed in the API example aren't accepting any, some inputs can contain another option since it is entirely written differently, you may have common args that requires you to put them on
+
 ## __METHODS (obj refers to a created input)
 ```luau
 obj:relocate_input(pos: UDim2)
@@ -37,13 +40,18 @@ Moves your input UI position with specified UDim2 scale or offset, moving inputs
 
 pos: UDim2 - Position of where it should go to
 
+> [!CRITICAL]
+> This API is not implemented yet
+
 ----------
 
 ```luau
 obj:update_preference()
 ```
 Updates the preference after changed from the available settings, it only applies how the controls look
-because the stored setting is in a table of your created input without applying, you won't see the changes immediately so it is always required to call this
+
+> [!IMPORTANT]
+> because the stored setting is in a table of your created input without applying, you won't see the changes immediately so it is always required to call this before
 
 __________
 
@@ -59,7 +67,8 @@ obj:delete()
 ```
 Destroys the input after no longer used, you will no longer be able to access it after this has been called, By default when you destroy the input manually either from the `ResetOnSpawn` or somewhere else, it can do the job but sometimes they're not properly cleaned since there could be a task running it aswell
 
-it is recommended that you stop functions from running before calling this, otherwise memory leaks can occur especially if called at the time threads are still yielding
+> [!IMPORTANT]
+> it is recommended that you stop functions from running before calling this, otherwise memory leaks can occur especially if called at the time threads are still yielding
 
 __________
 ## __EVENTS
@@ -67,37 +76,32 @@ __________
 ```luau 
 input_src.joystick_inputbegin:Connect(function()
 ```
-Connects the joystick input event that fires only one time after they began to press, This is a custom event and is identical to UIS InputBegan but without input object required
-
-{There is no required arguments for this, these are optional}
+Connects the joystick input event that fires only one time after they began to press, This is a custom event and is identical to UIS InputBegan but without input object
 
 __________
 
 ```luau
-input_src.joystick_deadzone_triggered:Connect(function(exited)
+obj.joystick_deadzone_triggered:Connect(function(exited)
 ```
-Connects the event when input pos has exited the dead zone for `joystick`, This fires only one each time they're outside (`fixed` and `dynamic` will not fire it since they don't have limitations in traversing)
+Connects the event when input pos has exited the dead zone for `joystick`, This fires only one each time they're outside
 
-{exited = whenever the dot reached the edge of the zone, returns true or false}
+`exited` = whenever the dot reached the edge of the zone, returns true or false
 
 __________
 
 ```luau
-input_src.normal_inputbegin:Connect(function()
+obj.dynamic_inputbegin:Connect(function()
 ```
-Connects the Input that fires when it began to press, This is only available to `fixed` and `dynamic` as they both don't have a limited and dead zone, for JOYSTICK_ inputbegin, refer to joystick_inputbegin
-
-{There is no returned arguments for this}
+Connects the Input that fires when it began to press, This is only available to `fixed` and `dynamic` as they both don't have a limited and dead zone, for thumbstick based controls, refer to `joystick_inputbegin`
 
 __________
 
 ```luau
-input_src.joystick_inputend:Connect(function()
+obj.joystick_inputend:Connect(function()
 ```
 
 Connects the InputEnd after touch released, identical to regular UIS InputEnded but automatically reset to where it was before.
 
-{There is no returned arguments for this}
 
 _______________
 
