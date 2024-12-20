@@ -4,7 +4,7 @@
 # input_src
 a mobile controls made for mobile compatibility games 
 
-input_src is a mobile controls input tool that focuses on fixing it's horrible controls, pinpointing issues that roblox offers to ContextActionService when turning mobile buttons parameters on and several naïve solutions, input_src's goal is to offer a pretty much quicker and better controls that none other than input_src can do, making it rich-like for compatibility without having the need to test by your phone, additionally it also offers a way to customize your appearance which can be done and call the update method.
+input_src is a mobile controls input tool that focuses on fixing it's horrible control issues that roblox offers to ContextActionService when turning mobile buttons parameters on and several naïve solutions, input_src's goal is to offer a pretty much quicker and better controls that none other than input_src can do, making it rich-like for compatibility without having the need to test by your phone, additionally it also offers a way to customize your appearance which can be done and call the update method.
 
 > [!WARNING]
 > Because the code written is entirely snake_case, if you wish to stylize within the standards, you are allowed to take this and modify it in your ways, as mentioned earlier in some of my devforum posts, I don't really like following the guides as it gets pretty confusing for me when I can't tell the differences between actual API from roblox and Custom ones, and lastly you should be aware that while this is intentionally an open source tool, codes can come in a messy structure or in some line where it's unnecessary or straight out impractical here
