@@ -19,12 +19,15 @@ type joystick_setting = {
 	dot_image_color: Color3;
 	zone_image_transparency: number;
 	zone_image_color: Color3;
+	joystick_pos: UDim2;
 }
 
 type info = {
 	input_id: number;
 	input_type: Joystick;
 	absolute_magnitude: number;
+	capped_scale_dot_x: number;
+	capped_scale_dot_y: number;
 }
 
 type output = {
@@ -80,7 +83,8 @@ function joystick.create(container: ScreenGui, zone: Frame, pos: UDim2, scale: n
 		dot_image_transparency = 0;
 		dot_image_color = Color3.new(1, 1, 1);
 		zone_image_transparency = 0;
-		zone_image_color = Color3.new(1, 1, 1)
+		zone_image_color = Color3.new(1, 1, 1);
+		joystick_pos = pos;
 	} :: joystick_setting
 
 	id.Value += 1
@@ -99,6 +103,8 @@ function joystick.create(container: ScreenGui, zone: Frame, pos: UDim2, scale: n
 		input_id = id.Value;
 		input_type = "Joystick";
 		absolute_magnitude = ico_zone.Size.X.Offset/2;
+		capped_scale_dot_x = ico_zone.Size.X.Offset;
+		capped_scale_dot_y = ico_zone.Size.Y.Offset;
 	} :: info
 	
 	self.output = {
@@ -116,6 +122,8 @@ function joystick.create(container: ScreenGui, zone: Frame, pos: UDim2, scale: n
 
 
 	ico_zone.Position = pos or UDim2.fromScale(0.744, 0.684)
+	self.info.capped_scale_dot_x = ico_zone.dot.Size.X.Offset * self.joystick_settings.dot_size
+	self.info.capped_scale_dot_y = ico_zone.dot.Size.Y.Offset * self.joystick_settings.dot_size
 	ico_zone.Size = UDim2.fromOffset(ico_zone.Size.X.Offset * scale, ico_zone.Size.Y.Offset * scale)
 	ico_zone.deadzone.Size = UDim2.fromOffset(self.joystick_value_set.deadzone_set * 2, self.joystick_value_set.deadzone_set * 2)
 	if self.joystick_settings.image_enabled == true then
@@ -134,12 +142,13 @@ function joystick.create(container: ScreenGui, zone: Frame, pos: UDim2, scale: n
 	function self:update_preference()
 		local src: Frame = ico_zone
 		
+		src.Position = self.joystick_settings.joystick_pos
 		src.Size = UDim2.fromOffset(src.Size.X.Offset * self.joystick_settings.scale_multi, src.Size.Y.Offset * self.joystick_settings.scale_multi)
 		self.joystick_value_set.default_offset = self.joystick_value_set.default_offset * self.joystick_settings.scale_multi
 		src.BackgroundColor3 = self.joystick_settings.zone_color
 		src.BackgroundTransparency = self.joystick_settings.zone_transparency
 		src.dot.BackgroundColor3 = self.joystick_settings.dot_color
-		src.dot.Size = UDim2.fromOffset(src.dot.Size.X.Offset * self.joystick_settings.dot_size, src.dot.Size.Y.Offset * self.joystick_settings.dot_size)
+		src.dot.Size = UDim2.fromOffset(self.info.capped_scale_dot_x * self.joystick_settings.dot_size, self.info.capped_scale_dot_y * self.joystick_settings.dot_size)
 		src.deadzone.Size = UDim2.fromOffset(self.joystick_value_set.deadzone_set * 2, self.joystick_value_set.deadzone_set * 2)
 
 		if self.joystick_settings.disable_deadzone_visual == true then
